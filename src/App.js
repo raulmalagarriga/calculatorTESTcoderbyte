@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Numpad from './components/Numpad';
+import Result from './components/Result';
 import './App.css';
 
-function App() {
+const App = () => {
+  
+  const [result, setResult] = useState('');
+
+  const handleButtons = (e) => {
+    console.log(e.target.name);
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <div>
+                <div className="calculator-body">
+                    <Result  result={result}/>
+                    <Numpad  handleButtons={handleButtons}/>
+                    
+                </div>
+            </div>
+  )
 }
 
 export default App;
