@@ -1,38 +1,34 @@
-import React from 'react'
+import React from 'react';
+import deleted from '../assets/delete.png';
 
-const Numpad = ({handleButtons}) => {
+const Numpad = ({updateResult , calculate , clear , reset}) => {
   
+  const createDigits =()=>{
+    const digits=[]
+
+    for (let i=1;i<10; i++){
+        digits.push(
+            <button onClick={()=>updateResult(i.toString())} key={i}>{i}</button>
+        )
+    }
+    return digits
+  }
+
   return (
     <div className="button">
-                <button name="("  onClick={ handleButtons }>(</button>
-                <button name="CE"  onClick={ handleButtons }>CE</button>
-                <button name=")"  onClick={ handleButtons }>)</button>
-                <button name="C"  onClick={ handleButtons }>C</button><br/>
-
-
-                <button name="1"  onClick={ handleButtons }>1</button>
-                <button name="2"  onClick={ handleButtons }>2</button>
-                <button name="3"  onClick={ handleButtons }>3</button>
-                <button name="+"  onClick={ handleButtons }>+</button><br/>
-
-
-                <button name="4"  onClick={ handleButtons }>4</button>
-                <button name="5"  onClick={ handleButtons }>5</button>
-                <button name="6"  onClick={ handleButtons }>6</button>
-                <button name="-"  onClick={ handleButtons }>-</button><br/>
-
-                <button name="7"  onClick={ handleButtons }>7</button>
-                <button name="8"  onClick={ handleButtons }>8</button>
-                <button name="9"  onClick={ handleButtons }>9</button>
-                <button name="*"  onClick={ handleButtons }>x</button><br/>
-
-
-                <button name="."  onClick={ handleButtons }>.</button>
-                <button name="0"  onClick={ handleButtons }>0</button>
-                <button name="="  onClick={ handleButtons }>=</button>
-                <button name="/"  onClick={ handleButtons }>÷</button><br/>
-            </div>
+        { createDigits() }
+        <button onClick={()=>{updateResult('.')}}>.</button>
+        <button onClick={()=>{updateResult('0')}}>0</button>
+        <button className='button-calculate' onClick={calculate}>=</button>
+        <button className='button-action' onClick={()=>{updateResult('+')}}>+</button>
+        <button className='button-action' onClick={()=>{updateResult('-')}}>-</button>
+        <button className='button-ce' onClick={clear}><img  src={deleted} alt='deleted' /></button>
+        <button className='button-action' onClick={()=>{updateResult('/')}} >/</button>
+        <button className='button-action' onClick={()=>{updateResult('*')}}>*</button>
+        <button className='button-ce' onClick={reset}>C</button>
+    </div>
   )
 }
 
 export default Numpad;
+
